@@ -1,0 +1,15 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+
+build
+.gradle
+.idea
+
+local.properties
+ketal_bot
