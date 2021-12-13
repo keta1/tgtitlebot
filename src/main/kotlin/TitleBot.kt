@@ -41,11 +41,15 @@ class TitleBot(token: String = TOKEN, username: String = USERNAME, options: Defa
         info("set title for member")
         locality(GROUP)
         privacy(GROUP_ADMIN)
-        flag(botMsg, outdatedMsg, canPromoteMembers)
+        flag(botMsg, outdatedMsg)
         action { ctx ->
             val msg = ctx.update().message
             val chatId = ctx.chatId().toString()
-            val userId = if (msg.isReply) msg.replyToMessage.from.id else ctx.user().id
+            val userId = if (msg.isReply) {
+                // 拥有 PromoteMembers 权限才能修改他人头衔
+                if (!canPromoteMembers.test(ctx.update())) return@action
+                msg.replyToMessage.from.id
+            } else ctx.user().id
 
             val admins = getAdmins(chatId) ?: return@action
             val checkBotPermission =
