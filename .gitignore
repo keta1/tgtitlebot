@@ -1,15 +1,6 @@
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# Package Files #
-*.jar
-
 build
+out
 .gradle
 .idea
-
 local.properties
 ketal_bot
