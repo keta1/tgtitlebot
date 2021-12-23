@@ -100,8 +100,6 @@ class TitleBot(token: String = TOKEN, username: String = USERNAME, options: Defa
                 this.chatId = chatId
                 this.userId = userId
                 canManageChat = true
-                canChangeInformation
-                canPromoteMembers = true
             })
         }.onFailure {
             silent.send("添加管理失败: ${it.message}", chatId.toLong())
